@@ -2,7 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\QuestionsController;
+use App\Http\Controllers\MetadataController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -17,3 +18,12 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::prefix('/blog')->group(function() {
+    Route::get('/questions', [QuestionsController::class, 'index']);
+});
+
+Route::prefix('/blog')->group(function() {
+    Route::get('/metadata', [MetadataController::class, 'index']);
+});
+
